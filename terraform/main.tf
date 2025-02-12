@@ -3,9 +3,9 @@ provider "local" {}
 resource "null_resource" "setup_apache" {
   provisioner "local-exec" {
     command = <<EOT
-      # Non-interactive sudo execution
-      echo "your_password" | sudo -S apt update -y && \
-      echo "your_password" | sudo -S apt install -y apache2 && \
+      # Update packages and install Apache non-interactively
+      sudo apt update -y && \
+      sudo apt install -y apache2 && \
       sudo systemctl enable apache2 && \
       sudo systemctl start apache2
     EOT
