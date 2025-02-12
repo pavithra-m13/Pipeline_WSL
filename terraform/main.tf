@@ -1,6 +1,7 @@
 provider "local" {}
 
 resource "null_resource" "setup_apache" {
+  interpreter = ["bash", "-c"]
   provisioner "local-exec" {
     command = <<EOT
       # Update packages, install Apache, enable, and start the service
