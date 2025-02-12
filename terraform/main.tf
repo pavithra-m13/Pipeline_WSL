@@ -8,6 +8,8 @@ resource "null_resource" "setup_apache" {
       echo '' | sudo -S apt install -y apache2 && \
       sudo systemctl enable apache2 && \
       sudo systemctl start apache2
+      # Check the status of Apache service
+      sudo systemctl status apache2 --no-pager
     EOT
   }
 }
@@ -24,6 +26,4 @@ resource "null_resource" "deploy_website" {
   }
 }
 
-output "website_url" {
-  value = "http://localhost"
-}
+
