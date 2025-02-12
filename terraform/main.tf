@@ -14,16 +14,6 @@ resource "null_resource" "setup_apache" {
   }
 }
 
-resource "null_resource" "deploy_website" {
-  depends_on = [null_resource.setup_apache]
-  
-  provisioner "local-exec" {
-    command = <<EOT
-      # Deploy website files
-      echo '' | sudo -S cp -r ${path.module}/website/* /var/www/html/
-      sudo systemctl restart apache2
-    EOT
-  }
-}
+
 
 
